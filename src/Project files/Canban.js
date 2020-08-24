@@ -1,19 +1,22 @@
 import React from 'react';
-import './App.css';
+
 import {Container, Row, Col} from 'reactstrap';
-import Board from './Project files/Board';
-import Canban from './Project files/Canban';
+import Board from './Board';
 import {connect} from 'react-redux';
+import AddColumnModal from './AddBoardModal';
+import AddTaskModal from './AddTaskModal';
 
-function App() {
+function Canban(props) {
 
+    const {board} = props
     return (
-        <div className="App">
-            <Container>
-                <Canban/>
-            </Container>
+        <div>
+            <AddTaskModal />
+            <AddColumnModal />
+            <Row>
+            {board.map(el => <Board board={el}/>)}
+                        </Row>
         </div>
-
     );
 }
 
@@ -29,5 +32,6 @@ const mapDispatchToProps = (dispatch) => ({
     deleteTask: (id) => dispatch({type: 'TODO_REMOVE', payload: id})
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Canban);
+
 
