@@ -15,6 +15,7 @@ function AddBoardModal(props) {
         // setNewTitle('')
     // }
     console.log(modalState)
+
     return (
 
         <>
@@ -22,19 +23,20 @@ function AddBoardModal(props) {
             <Modal isOpen={modalState}>
                 <ModalHeader> Add new column (= </ModalHeader>
                 <ModalBody>
-                    <Label>Mew Column</Label>
-                    <Input type="text" value={''} onChange={(e) => {}}/>
-                {/*    <Row>*/}
-                {/*        <Col>*/}
-                {/*            <Label> Status for filter</Label>*/}
-                {/*            <Input type="text" value={newStatus} onChange={(e) => setNewStatus(e.target.value)}/>*/}
+                    <Label>Mew Board</Label>
+                    <Input type="text" value={' '} onChange={(e) => props.setFilter(e.target.value)}/>
+                    <Row>
+                        <Col>
+                            <Label> Status for filter</Label>
+                            <Input type="text" value={' '} onChange={(e) => props.setBoard(e.target.value)}/>
 
-                {/*        </Col>*/}
-                {/*    </Row>*/}
+                        </Col>
+                    </Row>
                 </ModalBody>
                 <ModalFooter>
-                    <Button >Add mew column </Button>{' '}
-                    <Button onClick={() => props.openModal(false)}>Cancel</Button>
+                    // <Button >Add mew Board </Button>
+                    // {' '}
+                    // <Button onClick={() => props.openModal(false)}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </>
@@ -42,13 +44,19 @@ function AddBoardModal(props) {
 }
 
     const mapStateToProps = (state) => ({
-        modalState: state.boardModalState
+        modalState: state.boardModalState,
+        stateBoard: state.setBoard,
+        statusFilter: state.setFilter,
+
     });
     const mapDispatchToProps = (dispatch) => ({
 
-        openModal: (state) => dispatch({type: 'BOARD_MODAL_OPEN', payload: state})
+        openModal: (state) => dispatch({type: 'BOARD_MODAL_OPEN', payload: state}),
+        setFilter:(status) => dispatch({type:'SET_STATUS', payload: status}),
+        setBoard:(name) => dispatch({type:'SET_BOARD', payload:name}),
+        // addNewBoard:() => dispatch({type:'SET_MEW_BOARD',payload:{ id:Math.random(), name:props.stateBoard, title:props.statusFilter}})
+});
 
-    });
 
 
     export default connect (mapStateToProps, mapDispatchToProps)(AddBoardModal);

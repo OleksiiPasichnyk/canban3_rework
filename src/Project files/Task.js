@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 
 function Task(props) {
     const alertColors = ['success', 'warning', 'danger']
+
     const {task, deleteTask, changeTaskStatus} = props
 
 
@@ -51,7 +52,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 
     addTodo: (todo) => dispatch({type: 'TASK_ADD', payload: todo}),
-    deleteTask: (id) => dispatch({type: 'TASK_DELETE', payload: id}),
+    deleteTask: (id) => dispatch(deleteTask()),
     changeTaskStatus: (id, type) => dispatch({type: type, payload: id})
 
 });

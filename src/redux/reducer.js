@@ -13,14 +13,18 @@ const initialState = {
         {id: Math.random(), title: 'Done!!!', status: 'done'}
     ],
 
-  boardModalState: false,
-  taskModalState: false,
+    boardModalState: false,
+    taskModalState: false,
+    setStatus: [{status:""}],
+    setBoard: [{name:''}],
 
 
 };
-const statuses = [ initialState.taskList.map(el=> el = el.status)]
+const statuses = initialState.boardList.map(el => el.status)
+const priorities = [0, 1, 2]
 const canbanControlPanel = (state = initialState, action) => {
     switch (action.type) {
+
         case 'TASK_DELETE' :
             return {
                 ...state,
@@ -30,6 +34,11 @@ const canbanControlPanel = (state = initialState, action) => {
             return {
                 ...state,
                 taskList: state.taskList.filter(el => el.id !== action.payload)
+            };
+        case 'BOARD_ADD' :
+            return {
+                ...state,
+                boardList: state.taskList.filter(el => el.id !== action.payload)
             };
 
         case 'BOARD_MODAL_OPEN' :
@@ -44,27 +53,48 @@ const canbanControlPanel = (state = initialState, action) => {
             };
         case 'RIGHT' :
 
-            return {
-                ...state,
-                taskList: state.taskList.map(el=>{ state.taskList.map(el => {
-                    el.status = statuses[statuses.indexOf(el.status) + 1]
-                })
-                })
+            console.log(statuses)
 
-
-            };case 'LEFT' :
             return {
                 ...state,
-                boardModalState: state.boardModalState = action.payload
-            };case 'UP' :
-            return {
-                ...state,
-                boardModalState: state.boardModalState = action.payload
-            };case 'DOWN' :
-            return {
-                ...state,
-                boardModalState: state.boardModalState = action.payload
+                taskList: state.taskList.map(el => {
+                    if (el.id === action.payload) {
+                        el.status = statuses[statuses.indexOf(el.status) + 1]
+                    }
+                    return el
+                })
             };
+        case 'LEFT' :
+            return {
+                ...state,
+                taskList: state.taskList.map(el => {
+                    if (el.id === action.payload) {
+                        el.status = statuses[statuses.indexOf(el.status) - 1]
+                    }
+                    return el
+                })
+            };
+        case 'DOWN' :
+            return {
+                ...state,
+                taskList: state.taskList.map(el => {
+                    if (el.id === action.payload) {
+                        el.priority = priorities[priorities.indexOf(el.priority) - 1]
+                    }
+                    return el
+                })
+            };
+        case 'UP' :
+            return {
+                ...state,
+                taskList: state.taskList.map(el => {
+                    if (el.id === action.payload) {
+                        el.priority = priorities[priorities.indexOf(el.priority) + 1]
+                    }
+                    return el
+                })
+            };
+
         default:
             return state
 

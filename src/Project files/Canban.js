@@ -11,11 +11,11 @@ function Canban(props) {
     const {board} = props
     return (
         <div>
-            <AddTaskModal />
-            <AddColumnModal />
+            <AddTaskModal/>
+            <AddColumnModal/>
             <Row>
-            {board.map(el => <Board board={el}/>)}
-                        </Row>
+                {board.map(el => <Board board={el}/>)}
+            </Row>
         </div>
     );
 }
