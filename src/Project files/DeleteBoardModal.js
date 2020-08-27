@@ -5,25 +5,18 @@ import {connect} from 'react-redux';
 import * as uuidv4 from 'uuidv4';
 
 function DeleteBoardModal(props) {
-    const {modalState} = props
-
 
     const [newTitle, setNewTitle] = useState(' ')
-    const [newStatus, setNewStatus] = useState(' ')
+    const [modalStatus, setModalStatus] = useState(false)
     const buttonHandlerAdd = (title) => {
         props.deleteBoard(title)
-        props.openModal(false)
-        setNewTitle('')
+        setModalStatus(false)
     }
-    const deleteModalState = modalState.map(el=>{
-        if (el.id === 2) return el.state})
-    console.log(deleteModalState)
-
     return (
 
         <>
-            <Button onClick={() => props.openModal(2, true)}> Delete Board </Button>
-            <Modal isOpen={deleteModalState[0] }>
+            <Button onClick={() => setModalStatus(true)}> Delete Board </Button>
+            <Modal isOpen={modalStatus}>
                 <ModalHeader> Delete Board (= </ModalHeader>
                 <ModalBody>
                     <Label>Board to Delete!</Label>
@@ -34,7 +27,7 @@ function DeleteBoardModal(props) {
                     <Button onClick={() => buttonHandlerAdd(newTitle)}>Confirm Delete Board !</Button>
                     {' '}
 
-                    <Button onClick={() => props.openModal(2, false)}>Close window</Button>
+                    <Button onClick={() => setModalStatus(false)}>Close window</Button>
                 </ModalFooter>
             </Modal>
         </>
@@ -42,15 +35,13 @@ function DeleteBoardModal(props) {
 }
 
 const mapStateToProps = (state) => ({
-    modalState: state.boardModalState,
     stateBoard: state.setBoard,
     statusFilter: state.setFilter
 
 });
 const mapDispatchToProps = (dispatch) => ({
 
-    openModal: (id, state) => dispatch({type: 'BOARD_MODAL_OPEN', payload:{id, state}}),
-    deleteBoard: (id) => dispatch({type: 'DELETE_BOARD', payload:id})
+    deleteBoard: (id) => dispatch({type: 'DELETE_BOARD', payload: id})
 
 });
 
