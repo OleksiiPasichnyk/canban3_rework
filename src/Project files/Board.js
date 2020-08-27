@@ -1,4 +1,3 @@
-import TaskList from './Task';
 import React from 'react';
 import {Container, Col, Row} from 'reactstrap';
 import {connect} from 'react-redux';
@@ -6,7 +5,7 @@ import Task from './Task';
 
 function Board(props) {
     const {board, tasks} = props
-    console.log(tasks)
+
     return (
         <div>
                  <Col >

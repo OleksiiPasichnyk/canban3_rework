@@ -13,10 +13,13 @@ const initialState = {
         {id: Math.random(), title: 'Done!!!', status: 'done'}
     ],
 
-    boardModalState: false,
-    taskModalState: false,
-    setStatus: [{status:""}],
-    setBoard: [{name:''}],
+    boardModalState: [
+        {id:1, state: false},
+        {id:2, state:false}
+        ],
+    taskModalState: false
+    // setStatus: [{status:""}],
+    // setBoard: [{name:''}],
 
 
 };
@@ -35,17 +38,26 @@ const canbanControlPanel = (state = initialState, action) => {
                 ...state,
                 taskList: state.taskList.filter(el => el.id !== action.payload)
             };
-        case 'BOARD_ADD' :
+        case 'SET_BOARD' :
             return {
                 ...state,
-                boardList: state.taskList.filter(el => el.id !== action.payload)
+                boardList: [...state.boardList, action.payload]
+            };
+        case 'DELETE_BOARD' :
+            return {
+                ...state,
+                boardList: state.boardList.filter(el => el.title !== action.payload)
+            };
+        case 'BOARD_MODAL_OPEN' :
+
+            console.log(state.boardModalState)
+            return {
+                ...state,
+
+                boardModalState: state.boardModalState.map(el =>{ if ( el.id === action.payload.id) {el.state = action.payload.state}})
+
             };
 
-        case 'BOARD_MODAL_OPEN' :
-            return {
-                ...state,
-                boardModalState: state.boardModalState = action.payload
-            };
         case 'TASK_MODAL_OPEN' :
             return {
                 ...state,

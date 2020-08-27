@@ -5,6 +5,7 @@ import Board from './Board';
 import {connect} from 'react-redux';
 import AddColumnModal from './AddBoardModal';
 import AddTaskModal from './AddTaskModal';
+import DeleteBoardModal from './DeleteBoardModal';
 
 function Canban(props) {
 
@@ -13,6 +14,7 @@ function Canban(props) {
         <div>
             <AddTaskModal/>
             <AddColumnModal/>
+            <DeleteBoardModal/>
             <Row>
                 {board.map(el => <Board board={el}/>)}
             </Row>

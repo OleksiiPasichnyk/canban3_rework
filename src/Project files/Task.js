@@ -52,7 +52,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 
     addTodo: (todo) => dispatch({type: 'TASK_ADD', payload: todo}),
-    deleteTask: (id) => dispatch(deleteTask()),
+
+    deleteTask: (id) => dispatch({type: 'TASK_DELETE', payload: id}),
+
     changeTaskStatus: (id, type) => dispatch({type: type, payload: id})
 
 });

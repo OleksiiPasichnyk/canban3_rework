@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {Container, Row, Col} from 'reactstrap';
-import Board from './Project files/Board';
 import Canban from './Project files/Canban';
 import {connect} from 'react-redux';
 

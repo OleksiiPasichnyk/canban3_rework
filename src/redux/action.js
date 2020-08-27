@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function taskDelete (id) {
-    taskList: state.taskList.filter(el => el.id !== action.payload)
+export function deleteTask (id) {
+    taskList:
 
-    dispatch({type: 'TASK_DELETE', payload: id})
+    (dispatch)({})
 }
 
 export function getBoards() {
