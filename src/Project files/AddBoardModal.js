@@ -37,7 +37,6 @@ function AddBoardModal(props) {
                     <Button onClick={() => buttonHandlerAdd(newTitle, newStatus)}>Add mew Board </Button>
                     {' '}
 
-                    {' '}
                     <Button onClick={() => props.openModal(false)}>Close Window</Button>
                 </ModalFooter>
             </Modal>
@@ -53,7 +52,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
 
-    openModal: (state) => dispatch({type: 'BOARD_MODAL_OPEN', payload:{id:1, state}}),
+    openModal: (state) => dispatch({type: 'BOARD_MODAL_OPEN', payload: {id: 1, state}}),
     setBoard: (title, status) => dispatch({type: 'SET_BOARD', payload: {id: uuidv4, title, status}})
 
 });

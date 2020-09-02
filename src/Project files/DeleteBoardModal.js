@@ -9,7 +9,6 @@ import  {
     ModalHeader
 } from 'reactstrap';
 import {connect} from 'react-redux';
-import * as uuidv4 from 'uuidv4';
 import DropdownBoards from "./DropdownBoards";
 
 function DeleteBoardModal(props) {
@@ -20,8 +19,6 @@ function DeleteBoardModal(props) {
         props.deleteBoard(title)
         setModalStatus(false)
     }
-
-
     return (
 
         <>
@@ -29,13 +26,12 @@ function DeleteBoardModal(props) {
             <Modal isOpen={modalStatus}>
                 <ModalHeader> Delete Board (= </ModalHeader>
                 <ModalBody>
+
                     <DropdownBoards />
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={() => buttonHandlerAdd(newTitle)}>Confirm Delete Board !</Button>
-                    {' '}
-
+                    <Button onClick={() => buttonHandlerAdd(props.title)}>Confirm  Board Delete!</Button>
                     <Button onClick={() => setModalStatus(false)}>Close window</Button>
                 </ModalFooter>
             </Modal>

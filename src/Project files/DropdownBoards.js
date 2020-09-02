@@ -1,24 +1,26 @@
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, ModalBody} from "reactstrap";
 import React, {useState} from "react";
 import {connect} from "react-redux";
+import * as uuidv4 from "uuidv4";
 
 function DropdownBoards(props) {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [newTitle, setNewTitle] = useState('')
 
+
     const toggle = () => setDropdownOpen(prevState => !prevState);
-    const dropdownmenu = props.boardList.map(el =>  el = <DropdownItem onClick = {()=> console.log(el) }  > {el.title} </DropdownItem> )
+    const dropdownList = props.boardList.map(el => <DropdownItem onClick ={()=> setNewTitle(el.title)}  >  {el.title} </DropdownItem >)
 
     return (
-
-
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle caret>
                 Board to delete {newTitle}
             </DropdownToggle>
             <DropdownMenu >
-                {[...dropdownmenu]}
+
+{[...dropdownList]}
+
             </DropdownMenu>
         </Dropdown>
 )
@@ -29,9 +31,5 @@ const mapStateToProps = (state) => ({
 
 });
 const mapDispatchToProps = (dispatch) => ({
-
-
-    deleteBoard: (id) => dispatch({type: 'DELETE_BOARD', payload: id})
-
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DropdownBoards);
