@@ -15,7 +15,7 @@ function DropdownBoards(props) {
     return (
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle caret>
-                Board to delete {newTitle}
+                Board {newTitle}
             </DropdownToggle>
             <DropdownMenu >
 
