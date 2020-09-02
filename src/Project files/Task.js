@@ -10,9 +10,10 @@ function Task(props) {
     const alertColors = ['success', 'warning', 'danger']
 
     const {task, deleteTask, changeTaskStatus} = props
+    const boardStatus = props.board.map(el=>el.status)
 
 
-    console.log(task)
+    console.log(`${boardStatus[boardStatus.length-1]}`)
     return (
         <div>
             <Col>
@@ -34,7 +35,7 @@ function Task(props) {
                     <CardBody>
                         {(task.status !== 'todo' &&
                             <Button onClick={() => changeTaskStatus(task.id, 'LEFT')}>←</Button>)}
-                        {(task.status !== 'done' &&
+                        {(task.status !== `${boardStatus[boardStatus.length-1]}` &&
                             <Button onClick={() => changeTaskStatus(task.id, 'RIGHT')}>→</Button>)}
                     </CardBody>
                     <Button onClick={() => deleteTask(task.id)}> Delete </Button>
@@ -47,7 +48,8 @@ function Task(props) {
 
 
 const mapStateToProps = (state) => ({
-    tasks: state.taskList
+    tasks: state.taskList,
+    board: state.boardList
 });
 const mapDispatchToProps = (dispatch) => ({
 

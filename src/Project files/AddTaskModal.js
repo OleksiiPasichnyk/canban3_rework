@@ -6,24 +6,25 @@ import DropdownBoards from './DropdownBoards';
 
 function AddTaskModal(props) {
 
-    // const [isModalOpen, setModalOpen] = useState(false)
-    // const [newTitle, setNewTitle] = useState("")
+    const [isModalOpen, setModalOpen] = useState(false)
+    const [newTitle, setNewTitle] = useState("")
     const [newPriority, setNewPriority] = useState(0);
-    const [newStatus, setNewStatus] = useState("todo")
-    // const buttonHandler = () => {
-    //     props.addNewTask(newTitle, newPriority, newStatus)
-    //     setModalOpen(false)
-    //     setNewTitle('')
-    // }
+    // const [newStatus, setNewStatus] = useState("todo")
+    const buttonHandler = () => {
+        const status = props.boardSet
+        props.addNewTask(newTitle, newPriority, status)
+        setModalOpen(false)
+        setNewTitle('')
+    }
 
     return (
         <>
-            <Button onClick={() => props.openModal(true)}> Add new task </Button>
-            <Modal isOpen={props.modalState}>
+            <Button onClick={() => setModalOpen(true)}> Add new task </Button>
+            <Modal isOpen={isModalOpen}>
                 <ModalHeader> Add new task (= </ModalHeader>
                 <ModalBody>
-                {/*    <Label>Mew Title</Label>*/}
-                {/*    <Input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)}/>*/}
+                    <Label>Mew Title</Label>
+                    <Input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)}/>
                     <Row>
                         <Col>
                             <Label> Priority</Label>
@@ -35,33 +36,26 @@ function AddTaskModal(props) {
                         </Col>
                         <Col>
                             <Label> Board </Label>
-
-                            {/*<Input type="select" value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>*/}
-                                {<DropdownBoards />}
-                            {/*    <option value={"todo"}> Todo</option>*/}
-                            {/*    <option value={"progress"}> Progress</option>*/}
-                            {/*    <option value={"review"}> Review</option>*/}
-                            {/*    <option value={"done"}> Done</option>*/}
-                            {/*</Input>*/}
-
+                            {<DropdownBoards/>}
                         </Col>
                     </Row>
                 </ModalBody>
                 <ModalFooter>
-                {/*    <Button onClick={buttonHandler}>Add mew task </Button>{' '}*/}
-                    <Button onClick={() => props.openModal(false)}>Cancel</Button>
+                        <Button onClick={buttonHandler}>Add mew task </Button>{' '}
+                    <Button onClick={() => setModalOpen(false)}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </>
 
     );
 }
+
 const mapStateToProps = (state) => ({
-    modalState: state.taskModalState
+    boardSet: state.boardSet
 });
 const mapDispatchToProps = (dispatch) => ({
 
-    openModal: (state) => dispatch({type: 'TASK_MODAL_OPEN', payload: state})
+    addNewTask:(name, priority, status) => dispatch({type:'TASK_ADD', payload:{name, priority, status}})
 
 });
-export default connect (mapStateToProps,mapDispatchToProps) (AddTaskModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTaskModal);

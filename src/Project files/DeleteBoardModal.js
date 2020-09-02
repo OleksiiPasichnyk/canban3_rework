@@ -13,7 +13,7 @@ import DropdownBoards from "./DropdownBoards";
 
 function DeleteBoardModal(props) {
 
-    const [newTitle, setNewTitle] = useState(' ')
+    // const [newTitle, setNewTitle] = useState(' ')
     const [modalStatus, setModalStatus] = useState(false)
     const buttonHandlerAdd = (title) => {
         props.deleteBoard(title)
@@ -31,7 +31,7 @@ function DeleteBoardModal(props) {
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={() => buttonHandlerAdd(props.title)}>Confirm  Board Delete!</Button>
+                    <Button onClick={() => buttonHandlerAdd(props.boardSet)}>Confirm  Board Delete!</Button>
                     <Button onClick={() => setModalStatus(false)}>Close window</Button>
                 </ModalFooter>
             </Modal>
@@ -40,9 +40,9 @@ function DeleteBoardModal(props) {
 }
 
 const mapStateToProps = (state) => ({
-    stateBoard: state.setBoard,
-    boardList: state.boardList
-
+    // stateBoard: state.setBoard,
+    boardList: state.boardList,
+    boardSet: state.boardSet
 });
 const mapDispatchToProps = (dispatch) => ({
 
