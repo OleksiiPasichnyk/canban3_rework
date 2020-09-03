@@ -3,20 +3,18 @@ import '../App.css';
 import {Col, Row, Button, Input, Label, Modal, ModalFooter, ModalBody, ModalHeader} from "reactstrap";
 import {connect} from 'react-redux';
 import DropdownBoards from './DropdownBoards';
+import * as uuidv4 from "uuidv4";
 
 function AddTaskModal(props) {
 
     const [isModalOpen, setModalOpen] = useState(false)
     const [newTitle, setNewTitle] = useState("")
     const [newPriority, setNewPriority] = useState(0);
-    // const [newStatus, setNewStatus] = useState("todo")
-    const buttonHandler = () => {
-        const status = props.boardSet
+    const buttonHandler = (newTitle, newPriority, status) => {
         props.addNewTask(newTitle, newPriority, status)
         setModalOpen(false)
         setNewTitle('')
     }
-
     return (
         <>
             <Button onClick={() => setModalOpen(true)}> Add new task </Button>
@@ -41,7 +39,9 @@ function AddTaskModal(props) {
                     </Row>
                 </ModalBody>
                 <ModalFooter>
-                        <Button onClick={buttonHandler}>Add mew task </Button>{' '}
+                    <Button onClick={() => buttonHandler(newTitle, newPriority, props.boardSet.status)}>Add mew
+                        task </Button>
+                    {' '}
                     <Button onClick={() => setModalOpen(false)}>Cancel</Button>
                 </ModalFooter>
             </Modal>
@@ -55,7 +55,10 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
 
-    addNewTask:(name, priority, status) => dispatch({type:'TASK_ADD', payload:{name, priority, status}})
+    addNewTask: (name, priority, status) => dispatch({
+        type: 'TASK_ADD',
+        payload: {id: {uuidv4}, name, priority, status}
+    })
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(AddTaskModal);

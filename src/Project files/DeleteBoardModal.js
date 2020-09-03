@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import '../App.css';
-import  {
-    DropdownItem,
+import {
     Button,
     Modal,
     ModalFooter,
@@ -11,14 +10,14 @@ import  {
 import {connect} from 'react-redux';
 import DropdownBoards from "./DropdownBoards";
 
-function DeleteBoardModal(props) {
 
-    // const [newTitle, setNewTitle] = useState(' ')
+function DeleteBoardModal(props) {
     const [modalStatus, setModalStatus] = useState(false)
-    const buttonHandlerAdd = (title) => {
+    const buttonHandler = (title) => {
         props.deleteBoard(title)
         setModalStatus(false)
     }
+    console.log(props.boardSet.title)
     return (
 
         <>
@@ -26,12 +25,10 @@ function DeleteBoardModal(props) {
             <Modal isOpen={modalStatus}>
                 <ModalHeader> Delete Board (= </ModalHeader>
                 <ModalBody>
-
-                    <DropdownBoards />
-
+                    <DropdownBoards/>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={() => buttonHandlerAdd(props.boardSet)}>Confirm  Board Delete!</Button>
+                    <Button onClick={() => buttonHandler(props.boardSet.title)}>Confirm Board Delete!</Button>
                     <Button onClick={() => setModalStatus(false)}>Close window</Button>
                 </ModalFooter>
             </Modal>
@@ -40,14 +37,13 @@ function DeleteBoardModal(props) {
 }
 
 const mapStateToProps = (state) => ({
-    // stateBoard: state.setBoard,
     boardList: state.boardList,
     boardSet: state.boardSet
 });
 const mapDispatchToProps = (dispatch) => ({
 
 
-    deleteBoard: (id) => dispatch({type: 'DELETE_BOARD', payload: id})
+    deleteBoard: (title) => dispatch({type: 'DELETE_BOARD', payload: title})
 
 });
 

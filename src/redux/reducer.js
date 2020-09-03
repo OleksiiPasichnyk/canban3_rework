@@ -13,15 +13,10 @@ const initialState = {
         {id: Math.random(), title: 'Done!!!', status: 'done'}
     ],
 
-   boardSet: '',
-    // setStatus: [{status:""}],
-    // setBoard: [{name:''}],
-
+   boardSet:
+       {title:'',status:''}
 
 };
-const statuses = {
-
-}
 const priorities = [0, 1, 2]
 const canbanControlPanel = (state = initialState, action) => {
     switch (action.type) {
@@ -32,9 +27,11 @@ const canbanControlPanel = (state = initialState, action) => {
                 taskList: state.taskList.filter(el => el.id !== action.payload)
             };
         case 'TASK_ADD' :
+            console.log(state.taskList)
             return {
                 ...state,
-                taskList: [...state.taskList,action.payload ]
+                taskList: [...state.taskList, action.payload]
+
             };
         case 'BOARD_ADD' :
             return {

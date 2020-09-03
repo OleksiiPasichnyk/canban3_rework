@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Container, Row, Col} from 'reactstrap';
+import  {Row} from 'reactstrap';
 import Board from './Board';
 import {connect} from 'react-redux';
 import AddColumnModal from './AddBoardModal';
@@ -29,12 +29,7 @@ const mapStateToProps = (state) => ({
 
 });
 
-const mapDispatchToProps = (dispatch) => ({
 
-    addTodo: (todo) => dispatch({type: 'TODO_ADD', payload: todo}),
-    deleteTask: (id) => dispatch({type: 'TODO_REMOVE', payload: id})
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Canban);
+export default connect(mapStateToProps)(Canban);
 
 

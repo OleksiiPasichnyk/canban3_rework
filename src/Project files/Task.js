@@ -1,8 +1,7 @@
 import React from 'react';
 import '../App.css';
 import {
-    Col, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Alert
+    Col, Card, CardBody, Button, Alert
 } from 'reactstrap'
 import {connect} from 'react-redux';
 
@@ -10,10 +9,10 @@ function Task(props) {
     const alertColors = ['success', 'warning', 'danger']
 
     const {task, deleteTask, changeTaskStatus} = props
-    const boardStatus = props.board.map(el=>el.status)
+    const boardStatus = props.board.map(el => el.status)
 
 
-    console.log(`${boardStatus[boardStatus.length-1]}`)
+    console.log(`${boardStatus[boardStatus.length - 1]}`)
     return (
         <div>
             <Col>
@@ -35,7 +34,7 @@ function Task(props) {
                     <CardBody>
                         {(task.status !== 'todo' &&
                             <Button onClick={() => changeTaskStatus(task.id, 'LEFT')}>←</Button>)}
-                        {(task.status !== `${boardStatus[boardStatus.length-1]}` &&
+                        {(task.status !== `${boardStatus[boardStatus.length - 1]}` &&
                             <Button onClick={() => changeTaskStatus(task.id, 'RIGHT')}>→</Button>)}
                     </CardBody>
                     <Button onClick={() => deleteTask(task.id)}> Delete </Button>
