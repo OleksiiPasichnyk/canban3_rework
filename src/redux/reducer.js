@@ -11,6 +11,7 @@ const initialState = {
         {id: Math.random(), title: 'In progress...', status: 'progress'},
         {id: Math.random(), title: 'Need review', status: 'review'},
         {id: Math.random(), title: 'Done!!!', status: 'done'}
+
     ],
 
    boardSet:
