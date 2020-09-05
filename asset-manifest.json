@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/canban3_rework/static/css/main.523f09c5.chunk.css",
+    "main.js": "/canban3_rework/static/js/main.425e07b2.chunk.js",
+    "main.js.map": "/canban3_rework/static/js/main.425e07b2.chunk.js.map",
+    "runtime-main.js": "/canban3_rework/static/js/runtime-main.9472af5f.js",
+    "runtime-main.js.map": "/canban3_rework/static/js/runtime-main.9472af5f.js.map",
+    "static/css/2.11829350.chunk.css": "/canban3_rework/static/css/2.11829350.chunk.css",
+    "static/js/2.5d0225af.chunk.js": "/canban3_rework/static/js/2.5d0225af.chunk.js",
+    "static/js/2.5d0225af.chunk.js.map": "/canban3_rework/static/js/2.5d0225af.chunk.js.map",
+    "index.html": "/canban3_rework/index.html",
+    "precache-manifest.80da0bf5d4a6b97ea6118e8afdb0c9c5.js": "/canban3_rework/precache-manifest.80da0bf5d4a6b97ea6118e8afdb0c9c5.js",
+    "service-worker.js": "/canban3_rework/service-worker.js",
+    "static/css/2.11829350.chunk.css.map": "/canban3_rework/static/css/2.11829350.chunk.css.map",
+    "static/css/main.523f09c5.chunk.css.map": "/canban3_rework/static/css/main.523f09c5.chunk.css.map",
+    "static/js/2.5d0225af.chunk.js.LICENSE.txt": "/canban3_rework/static/js/2.5d0225af.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9472af5f.js",
+    "static/css/2.11829350.chunk.css",
+    "static/js/2.5d0225af.chunk.js",
+    "static/css/main.523f09c5.chunk.css",
+    "static/js/main.425e07b2.chunk.js"
+  ]
+}
